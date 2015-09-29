@@ -49,34 +49,9 @@ public class PersonController {
 	public String listPersons(Model model) {
 		model.addAttribute("person", new Person());
 		model.addAttribute("listPersons", this.personService.listPersons());
-		testTransaction();
 		return "person";
 	}
 
-	private void testTransaction() {
-		// TODO Auto-generated method stub
-		Transaction transaction = new Transaction();
-		transaction.setArea("Dhanori");
-		transaction.setMobile("9552807811");
-		transaction.setCreatedDate(new Date());
-		transaction.setName("RoshanKumar Mutha");
-		transaction.setModifiedDate(new Date());
-		transactionService.addTransaction(transaction);
-		Item item = new Item();
-		item.setName("Sadi");
-		item.setPrice(1000);
-		item.setCreatedDate(new Date());
-		item.setModifiedDate(new Date());
-		item.setTransactionRef(transaction.getId());
-		Item item2 = new Item();
-		item2.setName("Dress");
-		item2.setPrice(2500);
-		item2.setCreatedDate(new Date());
-		item2.setModifiedDate(new Date());
-		item2.setTransactionRef(transaction.getId());
-		itemService.addItem(item);
-		itemService.addItem(item2);
-	}
 
 	// For add and update person both
 	@RequestMapping(value = "/person/add", method = RequestMethod.POST)
