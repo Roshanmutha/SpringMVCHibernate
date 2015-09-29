@@ -41,6 +41,8 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.journaldev.spring.model.Person</beans:value>
+				<beans:value>com.journaldev.spring.model.Item</beans:value>
+				<beans:value>com.journaldev.spring.model.Transaction</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -58,6 +60,21 @@
 	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
+	
+	<beans:bean id="transactionDAO" class="com.journaldev.spring.dao.TransactioDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="transactionService" class="com.journaldev.spring.service.TransactionServiceImpl">
+		<beans:property name="transactionDAO" ref="transactionDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="itemDAO" class="com.journaldev.spring.dao.ItemDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="itemService" class="com.journaldev.spring.service.ItemServiceImpl">
+		<beans:property name="itemDAO" ref="itemDAO"></beans:property>
+	</beans:bean>
+	
 	<context:component-scan base-package="com.journaldev.spring" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
