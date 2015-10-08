@@ -1,7 +1,5 @@
 package com.journaldev.spring;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.journaldev.spring.model.Item;
 import com.journaldev.spring.model.Person;
-import com.journaldev.spring.model.Transaction;
 import com.journaldev.spring.service.ItemService;
 import com.journaldev.spring.service.PersonService;
 import com.journaldev.spring.service.TransactionService;

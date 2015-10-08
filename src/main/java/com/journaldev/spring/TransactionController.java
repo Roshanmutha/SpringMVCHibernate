@@ -1,6 +1,8 @@
 package com.journaldev.spring;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.journaldev.spring.model.Item;
+import com.journaldev.spring.model.ItemListContainer;
 import com.journaldev.spring.model.Person;
 import com.journaldev.spring.model.Transaction;
 import com.journaldev.spring.service.ItemService;
@@ -19,10 +22,18 @@ import com.journaldev.spring.service.PersonService;
 import com.journaldev.spring.service.TransactionService;
 
 @Controller
-@RequestMapping(value="/transaction")
+@RequestMapping(value = "/transaction")
 public class TransactionController {
 
 	private PersonService personService;
+
+	private ItemListContainer getDummyItemListContainer() {
+		List<Item> itemList = new ArrayList<Item>();
+		for (int i = 0; i < 5; i++) {
+			itemList.add(new Item());
+		}
+		return new ItemListContainer(itemList);
+	}
 
 	@Autowired(required = true)
 	@Qualifier(value = "personService")
@@ -48,10 +59,11 @@ public class TransactionController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String listPersons(Model model) {
-		model.addAttribute("person", new Person());
-		model.addAttribute("listPersons", this.personService.listPersons());
-		testTransaction();
-		return "person";
+		model.addAttribute("transaction", new Transaction());
+		model.addAttribute("itemListContainer", getDummyItemListContainer());
+		//model.addAttribute("cp", .getContextPath());
+		//testTransaction();
+		return "transaction";
 	}
 
 	private void testTransaction() {
@@ -110,4 +122,3 @@ public class TransactionController {
 	}
 
 }
-
